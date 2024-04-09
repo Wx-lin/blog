@@ -4,7 +4,9 @@ import {
   NotificationOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, theme, Space,Button } from "antd";
+import { Layout, Menu, theme, Space, Switch } from "antd";
+import EventEmitter from "eventemitter3";
+import { MoonOutlined, SunOutlined } from "@ant-design/icons";
 import Logo from "@/assets/images/logo.svg";
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -26,6 +28,12 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
   }
 );
 
+const event = new EventEmitter();
+
+const handleThemeChange = (checked) => {
+  event.emit("themeStatus", checked);
+};
+
 const App = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -44,7 +52,11 @@ const App = () => {
           <span style={{ color: "#fff" }}>Blog</span>
         </Space>
         <div>
-          <Button>切换主题</Button>
+          <Switch
+            checkedChildren={<MoonOutlined />}
+            unCheckedChildren={<SunOutlined />}
+            onChange={handleThemeChange}
+          />
           <img src="" alt="" />
         </div>
       </Header>

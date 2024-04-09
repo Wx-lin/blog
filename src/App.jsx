@@ -1,6 +1,18 @@
-import { Button, ConfigProvider, theme } from "antd";
+import { ConfigProvider, theme } from "antd";
+import EventEmitter from "eventemitter3";
 import Layout from "@/components/Layout";
+import { useEffect } from "react";
+
 function App() {
+  const event = new EventEmitter();
+
+  useEffect(() => {
+    event.on("themeStatus", (checked) => {
+      console.log("checked", checked);
+    });
+    console.log(11);
+  });
+
   return (
     <>
       <ConfigProvider
