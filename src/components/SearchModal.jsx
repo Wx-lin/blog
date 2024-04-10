@@ -1,14 +1,30 @@
 import { Modal, Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SearchModal = ({ isModalOpen, setIsModalOpen }) => {
+  console.log("isModalOpenaa", isModalOpen);
   const handleOk = () => {
     setIsModalOpen(false);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.metaKey && event.key === "k") {
+        setIsModalOpen(!isModalOpen);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  });
+
   return (
     <>
       <Modal

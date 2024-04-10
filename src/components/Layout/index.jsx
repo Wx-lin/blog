@@ -1,4 +1,4 @@
-import React, { lazy, useState, useContext, Suspense } from "react";
+import React, { lazy, useState, useContext, Suspense, useEffect } from "react";
 import { CurrentContext, MENUS } from "@/config/index.jsx";
 import { Layout, Menu, theme, Space, Switch, Button } from "antd";
 import { Routes, Route, useNavigate } from "react-router-dom";
@@ -11,6 +11,7 @@ import {
   CaretLeftOutlined,
   CaretRightOutlined,
   SearchOutlined,
+  MacCommandOutlined,
 } from "@ant-design/icons";
 import Logo from "@/assets/images/logo.svg";
 
@@ -63,10 +64,19 @@ const App = () => {
           <div>
             <Button
               className="w-200px h-40px ml-55px"
-              icon={<SearchOutlined />}
               onClick={handleOpenSearchModal}
             >
-              搜索
+              <Space className="flex justify-between">
+                <Space>
+                  <SearchOutlined />
+                  <span>搜索</span>
+                </Space>
+
+                <Space>
+                  <span>⌘</span>
+                  <span>k</span>
+                </Space>
+              </Space>
             </Button>
             <SearchModal
               isModalOpen={isModalOpen}
