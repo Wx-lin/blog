@@ -1,6 +1,6 @@
-import { Modal, Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import { useState, useEffect } from 'react';
+import { Input, Modal } from 'antd';
+import { useEffect } from 'react';
 
 const SearchModal = ({ isModalOpen, setIsModalOpen }) => {
   console.log('isModalOpenaa', isModalOpen);

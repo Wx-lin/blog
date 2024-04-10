@@ -1,5 +1,5 @@
-import { Calendar, Card, Col, Row, Avatar } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { Avatar, Calendar, Card, Col, Row } from 'antd';
 const { Meta } = Card;
 
 const Home = () => {

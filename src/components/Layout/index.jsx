@@ -1,19 +1,18 @@
-import React, { lazy, useState, useContext, Suspense, useEffect } from 'react';
-import { CurrentContext, MENUS } from '@/config/index.jsx';
-import { Layout, Menu, theme, Space, Switch, Button } from 'antd';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import Logo from '@/assets/images/logo.svg';
 import SearchModal from '@/components/SearchModal.jsx';
-import { find } from 'lodash';
+import { CurrentContext, MENUS } from '@/config/index.jsx';
 import {
-  MoonOutlined,
-  SunOutlined,
-  GithubOutlined,
   CaretLeftOutlined,
   CaretRightOutlined,
+  GithubOutlined,
+  MoonOutlined,
   SearchOutlined,
-  MacCommandOutlined,
+  SunOutlined,
 } from '@ant-design/icons';
-import Logo from '@/assets/images/logo.svg';
+import { Button, Layout, Menu, Space, Switch, theme } from 'antd';
+import { find } from 'lodash';
+import React, { Suspense, lazy, useContext, useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 const { Header, Content, Sider } = Layout;
 const Home = lazy(() => import('@/view/Home.jsx'));
