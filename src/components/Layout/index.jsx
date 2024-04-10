@@ -46,6 +46,7 @@ const App = () => {
           background: colorBgContainer,
           borderRadius: borderRadiusLG,
           padding: "0 25px",
+          borderBottom:'1px solid #e5e7eb'
         }}
       >
         <Space size={10}>
