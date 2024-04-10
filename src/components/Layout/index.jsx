@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { CurrentContext, MENUS } from "@/config";
-import { Layout, Menu, theme, Space, Switch } from "antd";
-import { MoonOutlined, SunOutlined } from "@ant-design/icons";
+import { Layout, Menu, theme, Space, Switch, Button } from "antd";
+import {
+  MoonOutlined,
+  SunOutlined,
+  GithubOutlined,
+  CaretLeftOutlined,
+  CaretRightOutlined,
+} from "@ant-design/icons";
 import Logo from "@/assets/images/logo.svg";
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -13,8 +19,14 @@ const App = () => {
 
   const { setTheme } = useContext(CurrentContext);
 
+  const [collapsed, setCollapsed] = useState(false);
+
   const handleThemeChange = (checked) => {
     setTheme(checked ? "dark" : "light");
+  };
+
+  const handleCollapsedChange = () => {
+    setCollapsed(!collapsed);
   };
   return (
     <Layout>
@@ -23,26 +35,27 @@ const App = () => {
         style={{
           background: colorBgContainer,
           borderRadius: borderRadiusLG,
+          padding: "0 25px",
         }}
       >
-        <Space>
-          <img
-            style={{
-              width: "40px",
-              heigth: "40px",
-            }}
-            src={Logo}
-          />
-          <span style={{ color: "#fff" }}>Blog</span>
+        <Space size={10}>
+          <img className="w-40px h-40px" src={Logo} />
+          <span style={{ color: "#087ea4", fontSize: "14px" }}>个人博客</span>
         </Space>
-        <div>
+        <Space size={10}>
           <Switch
             checkedChildren={<MoonOutlined />}
             unCheckedChildren={<SunOutlined />}
             onChange={handleThemeChange}
           />
-          <img src="" alt="" />
-        </div>
+          <Button
+            size="large"
+            target="_blank"
+            href="https://github.com/Wx-lin/blog"
+            icon={<GithubOutlined />}
+          />
+          <span>月亮撞木星</span>
+        </Space>
       </Header>
       <Content>
         <Layout
@@ -52,31 +65,26 @@ const App = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          <Sider
-            trigger={null}
-            style={{
-              background: colorBgContainer,
-            }}
-            width={200}
-          >
+          <Sider collapsed={collapsed} trigger={null} width={200}>
             <Menu
               mode="inline"
               defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
-              style={{
-                height: "100%",
-              }}
+              className="h-1/1"
               items={MENUS}
             />
+            <div
+              className="cursor-pointer absolute right-0 top-1/3 text-xl"
+              onClick={handleCollapsedChange}
+            >
+              {collapsed ? <CaretRightOutlined /> : <CaretLeftOutlined />}
+            </div>
           </Sider>
           <Content
             style={{
               padding: "0 20px",
-              minHeight: 280,
+              minHeight: 590,
             }}
-          >
-            Content
-          </Content>
+          ></Content>
         </Layout>
       </Content>
       <Footer
