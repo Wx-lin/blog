@@ -1,54 +1,49 @@
-import { createContext } from "react";
-import {
-  LaptopOutlined,
-  NotificationOutlined,
-  UserOutlined,
-  HomeOutlined,
-} from "@ant-design/icons";
+import { createContext } from 'react';
+import { LaptopOutlined, NotificationOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons';
 
 export const CurrentContext = createContext(null);
 
 export const MENUS = [
   {
-    key: "0",
-    label: "Home",
+    key: '0',
+    label: 'Home',
     icon: <HomeOutlined />,
-    path: "/",
+    path: '/',
   },
   {
-    key: "1",
-    label: "HTML",
+    key: '1',
+    label: 'HTML',
     icon: <LaptopOutlined />,
-    path: "html",
+    path: 'html',
   },
   {
-    key: "2",
-    label: "CSS",
+    key: '2',
+    label: 'CSS',
     icon: <NotificationOutlined />,
-    path: "css",
+    path: 'css',
   },
   {
-    key: "3",
-    label: "JavaScript",
+    key: '3',
+    label: 'JavaScript',
     icon: <UserOutlined />,
-    path: "javaScript",
+    path: 'javaScript',
   },
   {
-    key: "4",
-    label: "Vue",
+    key: '4',
+    label: 'Vue',
     icon: <UserOutlined />,
-    path: "vue",
+    path: 'vue',
   },
   {
-    key: "5",
-    label: "React",
+    key: '5',
+    label: 'React',
     icon: <UserOutlined />,
-    path: "react",
+    path: 'react',
   },
   {
-    key: "6",
-    label: "About",
+    key: '6',
+    label: 'About',
     icon: <UserOutlined />,
-    path: "about",
+    path: 'about',
   },
 ];

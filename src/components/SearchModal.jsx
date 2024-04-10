@@ -1,9 +1,9 @@
-import { Modal, Input } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
-import { useState, useEffect } from "react";
+import { Modal, Input } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import { useState, useEffect } from 'react';
 
 const SearchModal = ({ isModalOpen, setIsModalOpen }) => {
-  console.log("isModalOpenaa", isModalOpen);
+  console.log('isModalOpenaa', isModalOpen);
   const handleOk = () => {
     setIsModalOpen(false);
   };
@@ -13,34 +13,23 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }) => {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.metaKey && event.key === "k") {
+      if (event.metaKey && event.key === 'k') {
         setIsModalOpen(!isModalOpen);
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   });
 
   return (
     <>
-      <Modal
-        width={700}
-        closeIcon={false}
-        footer={null}
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
+      <Modal width={700} closeIcon={false} footer={null} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <div className="h-300px">
-          <Input
-            size="large"
-            prefix={<SearchOutlined />}
-            placeholder="请输入搜索内容"
-          />
+          <Input size="large" prefix={<SearchOutlined />} placeholder="请输入搜索内容" />
         </div>
       </Modal>
     </>
