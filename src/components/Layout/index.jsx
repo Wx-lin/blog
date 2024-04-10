@@ -1,46 +1,30 @@
 import React from "react";
-import {
-  LaptopOutlined,
-  NotificationOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { useContext } from "react";
+import { CurrentContext, MENUS } from "@/config";
 import { Layout, Menu, theme, Space, Switch } from "antd";
-import EventEmitter from "eventemitter3";
 import { MoonOutlined, SunOutlined } from "@ant-design/icons";
 import Logo from "@/assets/images/logo.svg";
 const { Header, Content, Footer, Sider } = Layout;
-
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
-  (icon, index) => {
-    const key = String(index + 1);
-    return {
-      key: `sub${key}`,
-      icon: React.createElement(icon),
-      label: `subnav ${key}`,
-      children: new Array(4).fill(null).map((_, j) => {
-        const subKey = index * 4 + j + 1;
-        return {
-          key: subKey,
-          label: `option${subKey}`,
-        };
-      }),
-    };
-  }
-);
-
-const event = new EventEmitter();
-
-const handleThemeChange = (checked) => {
-  event.emit("themeStatus", checked);
-};
 
 const App = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const { setTheme } = useContext(CurrentContext);
+
+  const handleThemeChange = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
   return (
     <Layout>
-      <Header className="flex justify-between">
+      <Header
+        className="flex justify-between"
+        style={{
+          background: colorBgContainer,
+          borderRadius: borderRadiusLG,
+        }}
+      >
         <Space>
           <img
             style={{
@@ -82,7 +66,7 @@ const App = () => {
               style={{
                 height: "100%",
               }}
-              items={items2}
+              items={MENUS}
             />
           </Sider>
           <Content
