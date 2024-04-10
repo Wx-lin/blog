@@ -51,10 +51,9 @@ const App = () => {
         className="flex justify-between"
         style={{
           background: colorBgContainer,
-          borderRadius: borderRadiusLG,
           padding: '0 25px',
-          boxShadow: '0px 2px 5px #fff',
           marginBottom: 10,
+          borderBottom: '1px solid rgba(60, 60, 60, .29)',
         }}>
         <Space size={10}>
           <img className="w-40px h-40px cursor-pointer" src={Logo} />
