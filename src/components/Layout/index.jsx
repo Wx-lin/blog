@@ -2,6 +2,7 @@ import React, { lazy, useState, useContext, Suspense } from "react";
 import { CurrentContext, MENUS } from "@/config/index.jsx";
 import { Layout, Menu, theme, Space, Switch, Button } from "antd";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import SearchModal from "@/components/SearchModal.jsx";
 import { find } from "lodash";
 import {
   MoonOutlined,
@@ -9,6 +10,7 @@ import {
   GithubOutlined,
   CaretLeftOutlined,
   CaretRightOutlined,
+  SearchOutlined,
 } from "@ant-design/icons";
 import Logo from "@/assets/images/logo.svg";
 
@@ -24,6 +26,7 @@ const App = () => {
   const { setTheme } = useContext(CurrentContext);
 
   const [collapsed, setCollapsed] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleThemeChange = (checked) => {
     setTheme(checked ? "dark" : "light");
@@ -38,6 +41,10 @@ const App = () => {
     navigate(path);
   };
 
+  const handleOpenSearchModal = () => {
+    setIsModalOpen(true);
+  };
+
   return (
     <Layout>
       <Header
@@ -46,12 +53,26 @@ const App = () => {
           background: colorBgContainer,
           borderRadius: borderRadiusLG,
           padding: "0 25px",
-          borderBottom:'1px solid #e5e7eb'
+          boxShadow: "0px 2px 5px #fff",
+          marginBottom: 10,
         }}
       >
         <Space size={10}>
           <img className="w-40px h-40px cursor-pointer" src={Logo} />
           <span style={{ color: "#087ea4", fontSize: "14px" }}>个人博客</span>
+          <div>
+            <Button
+              className="w-200px h-40px ml-55px"
+              icon={<SearchOutlined />}
+              onClick={handleOpenSearchModal}
+            >
+              搜索
+            </Button>
+            <SearchModal
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+            />
+          </div>
         </Space>
         <Space size={10}>
           <Switch
@@ -94,7 +115,7 @@ const App = () => {
           <Content
             style={{
               padding: "0 20px",
-              minHeight:'650px'
+              minHeight: "650px",
             }}
           >
             <Suspense>
