@@ -1,7 +1,9 @@
 const Home = () => {
   return (
     <>
-      <span>首页</span>
+      <div className="h-3/3 border-solid border-dark-300 border">
+        
+      </div>
     </>
   );
 };

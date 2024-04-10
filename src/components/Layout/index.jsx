@@ -1,6 +1,6 @@
 import React, { lazy, useState, useContext, Suspense } from "react";
-import { CurrentContext, MENUS } from "@/config";
-import { Layout, Menu, theme, Space, Switch, Button, Spin } from "antd";
+import { CurrentContext, MENUS } from "@/config/index.jsx";
+import { Layout, Menu, theme, Space, Switch, Button } from "antd";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { find } from "lodash";
 import {
@@ -12,7 +12,7 @@ import {
 } from "@ant-design/icons";
 import Logo from "@/assets/images/logo.svg";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 const Home = lazy(() => import("@/view/Home.jsx"));
 const About = lazy(() => import("@/view/About.jsx"));
 
@@ -84,7 +84,7 @@ const App = () => {
               onClick={handleMenuClick}
             />
             <div
-              className="cursor-pointer absolute right-0 top-1/3 text-xl"
+              className="cursor-pointer absolute -right-10px top-1/3 text-xl"
               onClick={handleCollapsedChange}
             >
               {collapsed ? <CaretRightOutlined /> : <CaretLeftOutlined />}
@@ -93,7 +93,7 @@ const App = () => {
           <Content
             style={{
               padding: "0 20px",
-              minHeight: 590,
+              minHeight:'650px'
             }}
           >
             <Suspense>
@@ -105,13 +105,6 @@ const App = () => {
           </Content>
         </Layout>
       </Content>
-      <Footer
-        style={{
-          textAlign: "center",
-        }}
-      >
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
-      </Footer>
     </Layout>
   );
 };
