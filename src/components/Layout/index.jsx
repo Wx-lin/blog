@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { useContext } from "react";
+import React, { lazy, useState, useContext, Suspense } from "react";
 import { CurrentContext, MENUS } from "@/config";
-import { Layout, Menu, theme, Space, Switch, Button } from "antd";
+import { Layout, Menu, theme, Space, Switch, Button, Spin } from "antd";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { find } from "lodash";
 import {
   MoonOutlined,
   SunOutlined,
@@ -10,13 +11,16 @@ import {
   CaretRightOutlined,
 } from "@ant-design/icons";
 import Logo from "@/assets/images/logo.svg";
+
 const { Header, Content, Footer, Sider } = Layout;
+const Home = lazy(() => import("@/view/Home.jsx"));
+const About = lazy(() => import("@/view/About.jsx"));
 
 const App = () => {
+  const navigate = useNavigate();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-
   const { setTheme } = useContext(CurrentContext);
 
   const [collapsed, setCollapsed] = useState(false);
@@ -28,6 +32,12 @@ const App = () => {
   const handleCollapsedChange = () => {
     setCollapsed(!collapsed);
   };
+
+  const handleMenuClick = ({ key }) => {
+    const { path } = find(MENUS, { key });
+    navigate(path);
+  };
+
   return (
     <Layout>
       <Header
@@ -39,7 +49,7 @@ const App = () => {
         }}
       >
         <Space size={10}>
-          <img className="w-40px h-40px" src={Logo} />
+          <img className="w-40px h-40px cursor-pointer" src={Logo} />
           <span style={{ color: "#087ea4", fontSize: "14px" }}>个人博客</span>
         </Space>
         <Space size={10}>
@@ -67,10 +77,11 @@ const App = () => {
         >
           <Sider collapsed={collapsed} trigger={null} width={200}>
             <Menu
+              items={MENUS}
               mode="inline"
               defaultSelectedKeys={["1"]}
               className="h-1/1"
-              items={MENUS}
+              onClick={handleMenuClick}
             />
             <div
               className="cursor-pointer absolute right-0 top-1/3 text-xl"
@@ -84,7 +95,14 @@ const App = () => {
               padding: "0 20px",
               minHeight: 590,
             }}
-          ></Content>
+          >
+            <Suspense>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="about" element={<About />} />
+              </Routes>
+            </Suspense>
+          </Content>
         </Layout>
       </Content>
       <Footer
