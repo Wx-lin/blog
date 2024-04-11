@@ -5,6 +5,7 @@ import {
   SketchOutlined,
   UserOutlined,
   XOutlined,
+  AntDesignOutlined,
 } from '@ant-design/icons';
 import { createContext } from 'react';
 
@@ -52,5 +53,11 @@ export const MENUS = [
     label: 'About',
     icon: <UserOutlined />,
     path: 'about',
+  },
+  {
+    key: '7',
+    label: 'AntDemo',
+    icon: <AntDesignOutlined />,
+    path: 'demo',
   },
 ];
