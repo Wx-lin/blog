@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import { CurrentContext } from '@/config/index.jsx';
 import { ConfigProvider, theme } from 'antd';
+import zhCN from 'antd/locale/zh_CN';
 import { useState } from 'react';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
   return (
     <CurrentContext.Provider value={{ setTheme }}>
       <ConfigProvider
+        locale={zhCN}
         theme={{
           // 1. 单独使用暗色算法
           algorithm: themeValue === 'dark' ? theme.darkAlgorithm : theme.compactAlgorithm,

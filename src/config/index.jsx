@@ -1,14 +1,22 @@
+/*
+ * @Author: 王薪林
+ * @Date: 2024-04-12 21:15:08
+ * @LastEditTime: 2024-04-12 21:46:16
+ * @LastEditors: 王薪林
+ * @Description:配置文件
+ * @FilePath: /blog/src/config/index.jsx
+ */
+import CateGoryList from '@/view/Demo/components/CateGoryList.jsx';
 import {
+  AntDesignOutlined,
   HomeOutlined,
   Html5Outlined,
   JavaScriptOutlined,
   SketchOutlined,
   UserOutlined,
   XOutlined,
-  AntDesignOutlined,
 } from '@ant-design/icons';
 import { createContext } from 'react';
-import CateGoryList from '@/view/Demo/components/CateGoryList.jsx';
 
 export const CurrentContext = createContext(null);
 

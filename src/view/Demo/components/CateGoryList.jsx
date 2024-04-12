@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { Space, Button, Input, Table, Modal } from 'antd';
 import { CateGoryTable } from '@/config/TestData.jsx';
+import { Button, Input, Modal, Space, Table } from 'antd';
+import { useState } from 'react';
 const { Column } = Table;
 
 const AddCateGoryModal = ({ isModalOpen, setIsModalOpen }) => {
@@ -11,12 +11,17 @@ const AddCateGoryModal = ({ isModalOpen, setIsModalOpen }) => {
     setIsModalOpen(false);
   };
 
-  return <Modal title="添加分类" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}></Modal>;
+  return (
+    <Modal title="添加分类" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+    </Modal>
+  );
 };
 
 const CateGoryList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   return (
     <>
       <Space className="pt-20px" direction="vertical" size={20}>
