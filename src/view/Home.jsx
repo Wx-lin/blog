@@ -3,9 +3,6 @@ import { Avatar, Calendar, Card, Col, Row } from 'antd';
 const { Meta } = Card;
 
 const Home = () => {
-  const onPanelChange = (value, mode) => {
-    console.log(value.format('YYYY-MM-DD'), mode);
-  };
   return (
     <>
       <div className="h-3/3">
@@ -30,7 +27,7 @@ const Home = () => {
           </Col>
           <Col span={12}>
             <Card>
-              <Calendar fullscreen={false} onPanelChange={onPanelChange} />
+              <Calendar fullscreen={false} />
             </Card>
           </Col>
         </Row>

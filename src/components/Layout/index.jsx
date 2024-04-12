@@ -17,7 +17,8 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 const { Header, Content, Sider } = Layout;
 const Home = lazy(() => import('@/view/Home.jsx'));
 const About = lazy(() => import('@/view/About.jsx'));
-const Demo = lazy(() => import('@/view/Demo.jsx'));
+const Demo = lazy(() => import('@/view/Demo/index.jsx'));
+const CateGoryList = lazy(() => import('@/view/Demo/components/CateGoryList.jsx'));
 
 const App = () => {
   const navigate = useNavigate();
@@ -104,7 +105,7 @@ const App = () => {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="about" element={<About />} />
-                <Route path="demo" element={<Demo />} />
+                <Route path="demo" element={<Demo />}></Route>
               </Routes>
             </Suspense>
           </Content>
