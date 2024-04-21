@@ -1,5 +1,5 @@
-import { Tabs } from 'antd';
 import { DemoTabList } from '@/config/index.jsx';
+import { Tabs } from 'antd';
 
 const Demo = () => {
   return (

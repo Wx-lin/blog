@@ -1,7 +1,7 @@
 import { CateGoryTable } from '@/config/TestData.jsx';
 import { Button, Input, Modal, Space, Table } from 'antd';
 import { useState } from 'react';
-const { Column } = Table;
+import { CateGoryColumn } from './config.jsx';
 
 const AddCateGoryModal = ({ isModalOpen, setIsModalOpen }) => {
   const handleOk = () => {
@@ -32,22 +32,7 @@ const CateGoryList = () => {
           <Input placeholder="请输入内容" />
           <Button type="primary">查询</Button>
         </Space>
-        <Table className="w-1000px" bordered pagination={false} dataSource={CateGoryTable}>
-          <Column title="First Name" dataIndex="firstName" key="firstName" />
-          <Column title="Age" dataIndex="age" key="age" />
-          <Column title="Address" dataIndex="address" key="address" />
-          <Column
-            title="Action"
-            key="action"
-            render={() => (
-              <Space size="middle">
-                <Button size="small" type="primary" danger>
-                  删除
-                </Button>
-              </Space>
-            )}
-          />
-        </Table>
+        <Table className="w-1000px" bordered pagination={false} columns={CateGoryColumn} dataSource={CateGoryTable} />
         <AddCateGoryModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       </Space>
     </>
