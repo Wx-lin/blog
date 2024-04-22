@@ -1,7 +1,7 @@
 /*
  * @Author: 王薪林
  * @Date: 2024-04-12 21:15:08
- * @LastEditTime: 2024-04-22 13:14:25
+ * @LastEditTime: 2024-04-22 14:25:52
  * @LastEditors: 王薪林 10655211+wang-xinlinlin@user.noreply.gitee.com
  * @Description:配置文件
  * @FilePath: /blog/src/config/index.jsx
@@ -18,6 +18,7 @@ import {
 } from '@ant-design/icons';
 import { createContext } from 'react';
 import { Typography } from 'antd';
+import { formatTime } from '@nbfe/tools';
 
 const { Link } = Typography;
 
@@ -108,11 +109,17 @@ export const ArticleColumns = [
     title: '创建时间',
     dataIndex: 'ctime',
     key: 'ctime',
+    render: (text) => {
+      return formatTime(text, 'YYYY-MM-DD HH:mm');
+    },
   },
   {
     title: '更新时间',
     dataIndex: 'mtime',
     key: 'mtime',
+    render: (text) => {
+      return formatTime(text, 'YYYY-MM-DD HH:mm');
+    },
   },
   {
     title: '字数',

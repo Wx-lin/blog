@@ -19,7 +19,7 @@ export default function JavaScript() {
 
   return (
     <>
-      <Table dataSource={List} columns={ArticleColumns} pagination={{ pageSize: 15 }} />
+      <Table dataSource={List} columns={ArticleColumns} pagination={false} />
     </>
   );
 }
