@@ -18,7 +18,7 @@ const { Header, Content, Sider } = Layout;
 const Home = lazy(() => import('@/view/Home.jsx'));
 const About = lazy(() => import('@/view/About.jsx'));
 const Demo = lazy(() => import('@/view/Demo/index.jsx'));
-const CateGoryList = lazy(() => import('@/view/Demo/components/CateGoryList.jsx'));
+const JavaScript = lazy(() => import('@/view/JavaScript.jsx'))
 
 const App = () => {
   const navigate = useNavigate();
@@ -104,6 +104,7 @@ const App = () => {
             <Suspense>
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="javaScript" element={<JavaScript />} />
                 <Route path="about" element={<About />} />
                 <Route path="demo" element={<Demo />}></Route>
               </Routes>
