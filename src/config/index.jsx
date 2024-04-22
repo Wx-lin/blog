@@ -1,7 +1,7 @@
 /*
  * @Author: 王薪林
  * @Date: 2024-04-12 21:15:08
- * @LastEditTime: 2024-04-22 14:25:52
+ * @LastEditTime: 2024-04-22 15:10:49
  * @LastEditors: 王薪林 10655211+wang-xinlinlin@user.noreply.gitee.com
  * @Description:配置文件
  * @FilePath: /blog/src/config/index.jsx
@@ -17,10 +17,6 @@ import {
   XOutlined,
 } from '@ant-design/icons';
 import { createContext } from 'react';
-import { Typography } from 'antd';
-import { formatTime } from '@nbfe/tools';
-
-const { Link } = Typography;
 
 export const CurrentContext = createContext(null);
 
@@ -90,40 +86,5 @@ export const DemoTabList = [
     key: '3',
     label: 'Tab 3',
     children: 'Content of Tab Pane 3',
-  },
-];
-
-export const ArticleColumns = [
-  {
-    title: '标题',
-    dataIndex: 'title',
-    key: 'title',
-    render: (text) => <Link>{text}</Link>,
-  },
-  {
-    title: '分类',
-    dataIndex: 'category',
-    key: 'category',
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'ctime',
-    key: 'ctime',
-    render: (text) => {
-      return formatTime(text, 'YYYY-MM-DD HH:mm');
-    },
-  },
-  {
-    title: '更新时间',
-    dataIndex: 'mtime',
-    key: 'mtime',
-    render: (text) => {
-      return formatTime(text, 'YYYY-MM-DD HH:mm');
-    },
-  },
-  {
-    title: '字数',
-    dataIndex: 'size',
-    key: 'size',
   },
 ];
