@@ -1,7 +1,6 @@
-import { Typography } from 'antd';
+import { BarsOutlined } from '@ant-design/icons';
+import { Anchor, Space } from 'antd';
 import React, { useEffect, useState } from 'react';
-
-const { Link } = Typography;
 
 export default function AnchorNav() {
   const [titles, setTitles] = useState([]);
@@ -14,18 +13,14 @@ export default function AnchorNav() {
     let titles = [];
     dom?.forEach((v) => {
       if (['H1', 'H1', 'H3', 'H4', 'H5', 'H6'].includes(v.nodeName)) {
-        let a = document.createElement('a');
-        a.setAttribute('id', '#' + eid);
-        a.setAttribute('class', 'anchor-title');
-        a.setAttribute('href', '#' + eid);
-        a.innerText = ' ';
-        let title = {
-          type: v.nodeName,
-          id: eid,
-          name: v.innerText,
-        };
-        titles.push(title);
-        v.appendChild(a);
+        v.id = eid;
+
+        titles.push({
+          href: `#${eid}`,
+          title: v.innerText,
+          key: eid,
+        });
+
         eid++;
       }
     });
@@ -37,15 +32,14 @@ export default function AnchorNav() {
     setTitles(addAnchor());
   }, []);
 
-  const handleClickFun = () => {};
-
   return (
-    <div>
-      <div>
-        {titles.map((t) => (
-          <Link href={'#' + t.id} title={t.name} className={'title-' + t.type} key={t.id} />
-        ))}
-      </div>
-    </div>
+    <Space direction="vertical" size="large">
+      <Space>
+        <BarsOutlined style={{ fontSize: 16 }} />
+        <span>目录</span>
+      </Space>
+
+      <Anchor getCurrentAnchor="#markdown" items={titles} onClick={(e) => e.preventDefault()} />
+    </Space>
   );
 }

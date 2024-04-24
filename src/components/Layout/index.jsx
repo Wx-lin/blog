@@ -102,7 +102,7 @@ const App = () => {
               defaultSelectedKeys={getPathMenuName()}
               onClick={handleMenuClick}
             />
-            <div className="cursor-pointer absolute -right-10px top-1/3 text-xl" onClick={handleCollapsedChange}>
+            <div className="cursor-pointer absolute -right-10px top-200px text-xl" onClick={handleCollapsedChange}>
               {collapsed ? <CaretRightOutlined /> : <CaretLeftOutlined />}
             </div>
           </Sider>

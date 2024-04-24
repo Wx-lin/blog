@@ -25,11 +25,11 @@ export default function index() {
   return (
     <>
       <div>
-        <div className="document-page wrapper">
-          <main id="markdown" className="content container markdown-body flex">
+        <div className="document-page wrapper flex gap-20px">
+          <main id="markdown" className="content container markdown-body">
             {article && <div className="w-4/5 md">{<Markdown children={article} remarkPlugins={[remarkGfm]} />}</div>}
-            {article && <Anchor />}
           </main>
+          <div className=" w-150px">{article && <Anchor />}</div>
         </div>
       </div>
     </>
