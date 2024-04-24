@@ -12,7 +12,6 @@ function App() {
       <ConfigProvider
         locale={zhCN}
         theme={{
-          // 1. 单独使用暗色算法
           algorithm: themeValue === 'dark' ? theme.darkAlgorithm : theme.compactAlgorithm,
         }}>
         <Layout />

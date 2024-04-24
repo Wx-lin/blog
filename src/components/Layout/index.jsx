@@ -1,6 +1,7 @@
 import Logo from '@/assets/images/logo.svg';
 import SearchModal from '@/components/SearchModal.jsx';
 import { CurrentContext, MENUS } from '@/config/index.jsx';
+import { getPathMenuName } from '@/utils/index.js';
 import {
   CaretLeftOutlined,
   CaretRightOutlined,
@@ -13,7 +14,6 @@ import { Button, Layout, Menu, Space, Switch, theme } from 'antd';
 import { find } from 'lodash';
 import React, { Suspense, lazy, useContext, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import { getPathMenuName } from '@/utils/index.js';
 
 const { Header, Content, Sider } = Layout;
 const Home = lazy(() => import('@/view/Home.jsx'));
@@ -22,6 +22,7 @@ const Demo = lazy(() => import('@/view/Demo/index.jsx'));
 const JavaScript = lazy(() => import('@/view/JavaScript.jsx'));
 const Css = lazy(() => import('@/view/Css.jsx'));
 const Html = lazy(() => import('@/view/Html.jsx'));
+const Article = lazy(() => import('@/view/Article/index.jsx'));
 
 const App = () => {
   const navigate = useNavigate();
@@ -118,6 +119,7 @@ const App = () => {
                 <Route path="css" element={<Css />} />
                 <Route path="about" element={<About />} />
                 <Route path="demo" element={<Demo />} />
+                <Route path="article" element={<Article />} />
               </Routes>
             </Suspense>
           </Content>
