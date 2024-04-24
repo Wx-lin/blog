@@ -5,7 +5,6 @@ const getFilePath = (url, params) => {
 export const fetchArticle = async (url, params = {}) => {
     try {
         const res = await fetch(getFilePath(url, params));
-        console.log('res', res);
         return await res.text();
     } catch (error) {
         console.log(error);

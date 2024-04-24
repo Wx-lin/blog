@@ -23,7 +23,11 @@ export default function index() {
   return (
     <>
       <div>
-        <Markdown remarkPlugins={[remarkGfm]}>{article}</Markdown>
+        <div className="document-page wrapper">
+          <main id="markdown" className="content container markdown-body">
+            {<Markdown children={article} remarkPlugins={[remarkGfm]} />}
+          </main>
+        </div>
       </div>
     </>
   );
