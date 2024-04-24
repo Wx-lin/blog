@@ -2,7 +2,7 @@
  * @Author: 王薪林 10655211+wang-xinlinlin@user.noreply.gitee.com
  * @Date: 2024-04-22 14:54:49
  * @LastEditors: 王薪林 10655211+wang-xinlinlin@user.noreply.gitee.com
- * @LastEditTime: 2024-04-24 12:52:46
+ * @LastEditTime: 2024-04-24 14:17:39
  * @FilePath: /react-blog/react/src/components/ArticleTable/index.jsx
  * @Description:文章通用表格
  */
@@ -48,9 +48,8 @@ export default function index({ List }) {
   ];
   const [loading, setLoading] = useState(true);
 
-  const handleLinkToArticle = (row) => {
-    navigate('/article');
-    console.log('row', row);
+  const handleLinkToArticle = ({ category, name }) => {
+    navigate('/article', { state: { path: `/${category}/${name}` } });
   };
 
   useEffect(() => {

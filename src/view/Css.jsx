@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { fetchArticle } from '@/utils/index.js';
 import ArticleTable from '@/components/ArticleTable/index.jsx';
+import { fetchArticle } from '@/utils/index.js';
+import React, { useEffect, useState } from 'react';
 
 export default function Css() {
   const [List, setList] = useState([]);
