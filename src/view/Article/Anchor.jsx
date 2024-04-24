@@ -17,7 +17,7 @@ export default function AnchorNav() {
 
         titles.push({
           href: `#${eid}`,
-          title: v.innerText,
+          title: `${v.innerText.length > 20 ? [v.innerText.slice(0, 20), '...'].join('') : v.innerText}`,
           key: eid,
         });
 
@@ -34,10 +34,10 @@ export default function AnchorNav() {
 
   return (
     <Space direction="vertical" size="large">
-      <Space>
+      <div className="flex gap-5px">
         <BarsOutlined style={{ fontSize: 16 }} />
-        <span>目录</span>
-      </Space>
+        <div>目录</div>
+      </div>
 
       <Anchor getCurrentAnchor="#markdown" items={titles} onClick={(e) => e.preventDefault()} />
     </Space>
