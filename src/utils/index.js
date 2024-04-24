@@ -10,3 +10,7 @@ export const fetchArticle = async (url, params = {}) => {
 
     }
 };
+
+export const getPathMenuName = () => {
+    return window.location.pathname.slice(1);
+}

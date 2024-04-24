@@ -13,6 +13,7 @@ import { Button, Layout, Menu, Space, Switch, theme } from 'antd';
 import { find } from 'lodash';
 import React, { Suspense, lazy, useContext, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import { getPathMenuName } from '@/utils/index.js';
 
 const { Header, Content, Sider } = Layout;
 const Home = lazy(() => import('@/view/Home.jsx'));
@@ -20,6 +21,7 @@ const About = lazy(() => import('@/view/About.jsx'));
 const Demo = lazy(() => import('@/view/Demo/index.jsx'));
 const JavaScript = lazy(() => import('@/view/JavaScript.jsx'));
 const Css = lazy(() => import('@/view/Css.jsx'));
+const Html = lazy(() => import('@/view/Html.jsx'));
 
 const App = () => {
   const navigate = useNavigate();
@@ -92,7 +94,13 @@ const App = () => {
             borderRadius: borderRadiusLG,
           }}>
           <Sider collapsed={collapsed} trigger={null} width={200}>
-            <Menu items={MENUS} mode="inline" defaultSelectedKeys={['1']} className="h-1/1" onClick={handleMenuClick} />
+            <Menu
+              items={MENUS}
+              mode="inline"
+              className="h-1/1"
+              defaultSelectedKeys={getPathMenuName()}
+              onClick={handleMenuClick}
+            />
             <div className="cursor-pointer absolute -right-10px top-1/3 text-xl" onClick={handleCollapsedChange}>
               {collapsed ? <CaretRightOutlined /> : <CaretLeftOutlined />}
             </div>
@@ -105,10 +113,11 @@ const App = () => {
             <Suspense>
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="html" element={<Html />} />
                 <Route path="javaScript" element={<JavaScript />} />
                 <Route path="css" element={<Css />} />
                 <Route path="about" element={<About />} />
-                <Route path="demo" element={<Demo />}></Route>
+                <Route path="demo" element={<Demo />} />
               </Routes>
             </Suspense>
           </Content>

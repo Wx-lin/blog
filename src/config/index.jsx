@@ -1,7 +1,7 @@
 /*
  * @Author: 王薪林
  * @Date: 2024-04-12 21:15:08
- * @LastEditTime: 2024-04-22 15:10:49
+ * @LastEditTime: 2024-04-24 12:09:33
  * @LastEditors: 王薪林 10655211+wang-xinlinlin@user.noreply.gitee.com
  * @Description:配置文件
  * @FilePath: /blog/src/config/index.jsx
@@ -22,49 +22,49 @@ export const CurrentContext = createContext(null);
 
 export const MENUS = [
   {
-    key: '0',
+    key: 'index',
     label: 'Home',
     icon: <HomeOutlined />,
     path: '/',
   },
   {
-    key: '1',
-    label: 'HTML',
+    key: 'html',
+    label: 'html',
     icon: <Html5Outlined />,
     path: 'html',
   },
   {
-    key: '2',
-    label: 'CSS',
+    key: 'css',
+    label: 'css',
     icon: <Html5Outlined />,
     path: 'css',
   },
   {
-    key: '3',
+    key: 'javaScript',
     label: 'JavaScript',
     icon: <JavaScriptOutlined />,
     path: 'javaScript',
   },
   {
-    key: '4',
+    key: 'vue',
     label: 'Vue',
     icon: <XOutlined />,
     path: 'vue',
   },
   {
-    key: '5',
+    key: 'react',
     label: 'React',
     icon: <SketchOutlined />,
     path: 'react',
   },
   {
-    key: '6',
+    key: 'about',
     label: 'About',
     icon: <UserOutlined />,
     path: 'about',
   },
   {
-    key: '7',
+    key: 'demo',
     label: 'AntDemo',
     icon: <AntDesignOutlined />,
     path: 'demo',
