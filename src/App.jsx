@@ -12,7 +12,7 @@ function App() {
       <ConfigProvider
         locale={zhCN}
         theme={{
-          algorithm: themeValue === 'dark' ? theme.darkAlgorithm : theme.compactAlgorithm,
+          algorithm: themeValue === 'dark' ? [theme.darkAlgorithm, theme.compactAlgorithm] : theme.compactAlgorithm,
         }}>
         <Layout />
       </ConfigProvider>

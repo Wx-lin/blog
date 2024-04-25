@@ -27,7 +27,21 @@ export default function index() {
       <div>
         <div className="document-page wrapper flex gap-20px">
           <main id="markdown" className="content container markdown-body">
-            {article && <div className="w-4/5 md">{<Markdown children={article} remarkPlugins={[remarkGfm]} />}</div>}
+            {article && (
+              <div className="w-4/5 md">
+                {
+                  <Markdown
+                    components={{
+                      pre(data) {
+                        return <pre {...data} />;
+                      },
+                    }}
+                    children={article}
+                    remarkPlugins={[remarkGfm]}
+                  />
+                }
+              </div>
+            )}
           </main>
           <div className=" w-150px">{article && <Anchor />}</div>
         </div>
