@@ -1,7 +1,7 @@
 import Logo from '@/assets/images/logo.svg';
 import SearchModal from '@/components/SearchModal.jsx';
 import { CurrentContext, MENUS } from '@/config/index.jsx';
-import { getPathMenuName } from '@/utils/index.js';
+import { fetchArticle, getPathMenuName } from '@/utils/index.js';
 import {
   CaretLeftOutlined,
   CaretRightOutlined,
@@ -12,7 +12,7 @@ import {
 } from '@ant-design/icons';
 import { Button, Layout, Menu, Space, Switch, theme } from 'antd';
 import { find } from 'lodash';
-import React, { Suspense, lazy, useContext, useState } from 'react';
+import React, { Suspense, lazy, useContext, useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 const { Header, Content, Sider } = Layout;
@@ -23,6 +23,7 @@ const JavaScript = lazy(() => import('@/view/JavaScript.jsx'));
 const Css = lazy(() => import('@/view/Css.jsx'));
 const Html = lazy(() => import('@/view/Html.jsx'));
 const Article = lazy(() => import('@/view/Article/index.jsx'));
+const Node = lazy(() => import('@/view/Node.jsx'))
 
 const App = () => {
   const navigate = useNavigate();
@@ -33,6 +34,21 @@ const App = () => {
 
   const [collapsed, setCollapsed] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [List, setList] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, [setList]);
+
+  const fetchData = async () => {
+    const text = await fetchArticle('/store/data.json');
+    const data = JSON.parse(text);
+    Object.entries(data).forEach(([k, v]) => {
+      v.forEach((v2) => (v2.category = k));
+    });
+    setList(data);
+  };
 
   const handleThemeChange = (checked) => {
     setTheme(checked ? 'dark' : 'light');
@@ -114,9 +130,10 @@ const App = () => {
             <Suspense>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="html" element={<Html />} />
-                <Route path="javaScript" element={<JavaScript />} />
-                <Route path="css" element={<Css />} />
+                <Route path="html" element={<Html data={List['html']} />} />
+                <Route path="javaScript" element={<JavaScript data={List['js']} />} />
+                <Route path="css" element={<Css data={List['css']} />} />
+                <Route path="node" element={<Node data={List['node']} />} />
                 <Route path="about" element={<About />} />
                 <Route path="demo" element={<Demo />} />
                 <Route path="article" element={<Article />} />

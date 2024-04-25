@@ -1,7 +1,7 @@
 /*
  * @Author: 王薪林
  * @Date: 2024-04-12 21:15:08
- * @LastEditTime: 2024-04-24 12:09:33
+ * @LastEditTime: 2024-04-25 12:02:04
  * @LastEditors: 王薪林 10655211+wang-xinlinlin@user.noreply.gitee.com
  * @Description:配置文件
  * @FilePath: /blog/src/config/index.jsx
@@ -12,9 +12,7 @@ import {
   HomeOutlined,
   Html5Outlined,
   JavaScriptOutlined,
-  SketchOutlined,
-  UserOutlined,
-  XOutlined,
+  UserOutlined
 } from '@ant-design/icons';
 import { createContext } from 'react';
 
@@ -40,23 +38,29 @@ export const MENUS = [
     path: 'css',
   },
   {
+    key: 'node',
+    label: 'node',
+    icon: <Html5Outlined />,
+    path: 'node',
+  },
+  {
     key: 'javaScript',
     label: 'JavaScript',
     icon: <JavaScriptOutlined />,
     path: 'javaScript',
   },
-  {
-    key: 'vue',
-    label: 'Vue',
-    icon: <XOutlined />,
-    path: 'vue',
-  },
-  {
-    key: 'react',
-    label: 'React',
-    icon: <SketchOutlined />,
-    path: 'react',
-  },
+  // {
+  //   key: 'vue',
+  //   label: 'Vue',
+  //   icon: <XOutlined />,
+  //   path: 'vue',
+  // },
+  // {
+  //   key: 'react',
+  //   label: 'React',
+  //   icon: <SketchOutlined />,
+  //   path: 'react',
+  // },
   {
     key: 'about',
     label: 'About',
