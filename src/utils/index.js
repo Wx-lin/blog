@@ -1,11 +1,3 @@
-/*
- * @Author: 王薪林 10655211+wang-xinlinlin@user.noreply.gitee.com
- * @Date: 2024-04-22 11:59:54
- * @LastEditors: 王薪林 10655211+wang-xinlinlin@user.noreply.gitee.com
- * @LastEditTime: 2024-04-26 10:36:02
- * @FilePath: /react-blog/react/src/utils/index.js
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 const getFilePath = (url, params) => {
     return `http://localhost:8080/${url}/#${params}`;
 };
@@ -24,17 +16,19 @@ export const getPathMenuName = () => {
 }
 
 
-const addTitle = (element) => {
+const formatTitles = (element) => {
     let titles = []
     let currentH1 = null
     let eid = 0
 
+    const isHeading = (nodeName) => ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(nodeName);
+
     element.forEach((v) => {
-        if (!['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(v.nodeName)) {
+        if (!isHeading(v.nodeName)) {
             return
         }
-        v.id = eid;
 
+        v.id = eid;
         const titleObj = {
             href: `${eid}`,
             title: `${v.innerText.length > 20 ? [v.innerText.slice(0, 20), '...'].join('') : v.innerText}`,
@@ -54,11 +48,10 @@ const addTitle = (element) => {
     return titles
 }
 
-// 格式化目录数据
 export const addAnchor = () => {
     const ele = document.getElementsByClassName('markdown-body')[0] || {};
     const node = ele?.children[0];
     const dom = [...node.children];
-    return addTitle(dom)
+    return formatTitles(dom)
 };
 
