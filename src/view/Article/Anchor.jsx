@@ -10,17 +10,22 @@ export default function AnchorNav() {
     setTitles(addAnchor());
   }, []);
 
+  const handleAnchorClick = (e, link) => {
+    e.preventDefault()
+
+    if (link.href) {
+      const element = document.getElementById(link.href);
+      element?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    }
+  }
+
   return (
     <Space direction="vertical" size="large">
       <div className="flex gap-5px">
         <BarsOutlined style={{ fontSize: 16 }} />
         <div>目录</div>
       </div>
-
-      <Anchor getCurrentAnchor="#markdown" items={titles} onClick={(e) => {
-        e.preventDefault()
-        console.log(titles);
-      }} />
+      <Anchor getCurrentAnchor="#markdown" items={titles} onClick={handleAnchorClick} />
     </Space>
   );
 }
