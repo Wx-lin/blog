@@ -1,10 +1,17 @@
 import { fetchArticle } from '@/utils/index.js';
 import React, { useEffect, useState } from 'react';
 import Markdown from 'react-markdown';
+import { useLocation } from 'react-router-dom';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { coyWithoutShadows, darcula, vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import remarkGfm from 'remark-gfm';
 import Anchor from './Anchor.jsx';
 
-import { useLocation } from 'react-router-dom';
+const themes = {
+  vscDarkPlus,
+  coyWithoutShadows,
+  darcula,
+};
 
 export default function index() {
   const {
@@ -32,8 +39,18 @@ export default function index() {
                 {
                   <Markdown
                     components={{
-                      pre(data) {
-                        return <pre {...data} />;
+                      code(props) {
+                        const { children, className, node, ...rest } = props;
+                        const match = /language-(\w+)/.exec(className || '');
+                        return (
+                          <SyntaxHighlighter
+                            {...rest}
+                            children={String(children).replace(/\n$/, '')}
+                            showLineNumbers
+                            language={match[1]}
+                            style={themes.vscDarkPlus}
+                          />
+                        );
                       },
                     }}
                     children={article}
