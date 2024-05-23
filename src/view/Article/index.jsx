@@ -1,4 +1,4 @@
-import { fetchArticle } from '@/utils/index.js';
+import { fetchArticle } from '@/utils/index.jsx';
 import React, { useEffect, useState } from 'react';
 import Markdown from 'react-markdown';
 import { useLocation } from 'react-router-dom';

@@ -1,7 +1,7 @@
 import Logo from '@/assets/images/logo.svg';
 import SearchModal from '@/components/SearchModal.jsx';
 import { CurrentContext, MENUS } from '@/config/index.jsx';
-import { fetchArticle, getPathMenuName } from '@/utils/index.js';
+import { fetchArticle, getPathMenuName } from '@/utils/index.jsx';
 import {
   CaretLeftOutlined,
   CaretRightOutlined,
@@ -23,7 +23,7 @@ const JavaScript = lazy(() => import('@/view/JavaScript.jsx'));
 const Css = lazy(() => import('@/view/Css.jsx'));
 const Html = lazy(() => import('@/view/Html.jsx'));
 const Article = lazy(() => import('@/view/Article/index.jsx'));
-const Node = lazy(() => import('@/view/Node.jsx'))
+const Node = lazy(() => import('@/view/Node.jsx'));
 
 const App = () => {
   const navigate = useNavigate();

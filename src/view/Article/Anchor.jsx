@@ -1,4 +1,4 @@
-import { addAnchor } from '@/utils/index.js';
+import { addAnchor } from '@/utils/index.jsx';
 import { BarsOutlined } from '@ant-design/icons';
 import { Anchor, Space } from 'antd';
 import React, { useEffect, useState } from 'react';
@@ -11,13 +11,13 @@ export default function AnchorNav() {
   }, []);
 
   const handleAnchorClick = (e, link) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (link.href) {
       const element = document.getElementById(link.href);
       element?.scrollIntoView({ block: 'start', behavior: 'smooth' });
     }
-  }
+  };
 
   return (
     <Space direction="vertical" size="large">
