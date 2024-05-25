@@ -1,4 +1,3 @@
-import Ellipsis from '../components/Ellipsis';
 const getFilePath = (url, params) => {
   return `http://localhost:8080/${url}/#${params}`;
 };
@@ -31,8 +30,7 @@ const formatTitles = (element) => {
     v.id = eid;
     const titleObj = {
       href: `${eid}`,
-      // title: `${v.innerText.length > 20 ? [v.innerText.slice(0, 20), '...'].join('') : v.innerText}`,
-      title: <Ellipsis title={v.innerText} />,
+      title: `${v.innerText.length > 20 ? [v.innerText.slice(0, 20), '...'].join('') : v.innerText}`,
       key: eid,
       children: [],
     };
