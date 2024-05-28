@@ -5,19 +5,19 @@ import Page from './Page';
 import Tree from './Tree';
 
 export default function Tag() {
-    useEffect(() => {
-        onGetTreeList()
-    }, []);
+  useEffect(() => {
+    console.log('useEffect called');
+    onGetTreeList();
+  }, []);
 
-    const onGetTreeList = async () => {
-        const res = await getTreeList();
-        console.log('res', res);
-    }
+  const onGetTreeList = async () => {
+    const res = await getTreeList();
+  };
 
-    return (
-        <Space>
-            <Tree />
-            <Page />
-        </Space>
-    )
+  return (
+    <Space>
+      <Tree />
+      <Page />
+    </Space>
+  );
 }
