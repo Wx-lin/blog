@@ -6,9 +6,10 @@ import { useEffect, useRef, useState } from 'react';
   监听元素宽度变化
 */
 
-export default function Ellipsis({ title }) {
+export default function Ellipsis(props) {
+  console.log('props',props);
   const EllipsisRef = useRef(null);
-  const [Tooltipdisabled, setTooltipDisabled] = useState(false);
+  const [Tooltipdisabled, setTooltipDisabled] = useState(true);
 
   useEffect(() => {
     init();
@@ -17,28 +18,28 @@ export default function Ellipsis({ title }) {
   const init = () => {
     const { current } = EllipsisRef;
 
-    const resizeObserver = new ResizeObserver(([v]) => {
-      const { target } = v;
-      const { clientWidth, scrollWidth } = target;
+    if (!current) {
+      return
+    }
 
-      if (target !== current) {
+    const resizeObserver = new ResizeObserver(([v]) => {
+      const { clientWidth, scrollWidth, innerHTML } = current;
+
+      if (v.target !== current) {
         return;
       }
 
-      if (clientWidth < scrollWidth) {
-        setTooltipDisabled(true);
-      }
+      setTooltipDisabled(clientWidth >= scrollWidth);
     });
 
     resizeObserver.observe(current);
   };
 
   return (
-    <div ref={EllipsisRef} class="truncate">
-      <Tooltip title={title}>
-        {title}
-        {title}{' '}
-      </Tooltip>
-    </div>
+    <Tooltip title={props.title} disabled={Tooltipdisabled}>
+      <div ref={EllipsisRef} className="truncate w-100px">
+        {props.title}
+      </div>
+    </Tooltip>
   );
 }

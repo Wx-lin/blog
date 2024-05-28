@@ -1,12 +1,14 @@
 /*
  * @Author: 王薪林
  * @Date: 2024-04-12 21:15:08
- * @LastEditTime: 2024-04-25 12:02:04
+ * @LastEditTime: 2024-05-27 11:29:30
  * @LastEditors: 王薪林 10655211+wang-xinlinlin@user.noreply.gitee.com
  * @Description:配置文件
  * @FilePath: /blog/src/config/index.jsx
  */
 import CateGoryList from '@/view/Demo/components/CateGoryList.jsx';
+import Tag from '@/view/Demo/components/Tag/index.jsx';
+
 import {
   AntDesignOutlined,
   HomeOutlined,
@@ -84,7 +86,7 @@ export const DemoTabList = [
   {
     key: '2',
     label: 'Tab 2',
-    children: 'Content of Tab Pane 2',
+    children: <Tag />,
   },
   {
     key: '3',
