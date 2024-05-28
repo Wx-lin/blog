@@ -125,6 +125,8 @@ const App = () => {
           <Content
             style={{
               padding: '0 20px',
+              height: 'calc(100vh - 110px)',
+              overflow: 'auto',
             }}>
             <Suspense>
               <Routes>

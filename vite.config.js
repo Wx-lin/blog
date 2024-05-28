@@ -6,6 +6,8 @@ import { viteMockServe } from 'vite-plugin-mock';
 import WindiCSS from 'vite-plugin-windicss';
 
 const isDev = process.env.NODE_ENV === 'development';
+import { defineConfig } from 'vite';
+import WindiCSS from 'vite-plugin-windicss';
 
 // https://vitejs.dev/config/
 export default defineConfig({
