@@ -60,7 +60,7 @@ export default function index() {
               </div>
             )}
           </main>
-          <div className=" w-150px">{article && <Anchor />}</div>
+          <div className="w-150px fixed right-0">{article && <Anchor />}</div>
         </div>
       </div>
     </>

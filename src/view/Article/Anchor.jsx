@@ -8,6 +8,7 @@ export default function AnchorNav() {
 
   useEffect(() => {
     setTitles(addAnchor());
+    console.log('titles', titles);
   }, []);
 
   const handleAnchorClick = (e, link) => {
@@ -25,13 +26,7 @@ export default function AnchorNav() {
         <BarsOutlined style={{ fontSize: 16 }} />
         <div>目录</div>
       </div>
-      <Anchor
-        getCurrentAnchor="#markdown"
-        className="width:100px"
-        offsetTop={100}
-        items={titles}
-        onClick={handleAnchorClick}
-      />
+      <Anchor items={titles} onClick={handleAnchorClick} />
     </Space>
   );
 }

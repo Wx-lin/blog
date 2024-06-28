@@ -7,7 +7,6 @@ import { useEffect, useRef, useState } from 'react';
 */
 
 export default function Ellipsis(props) {
-  console.log('props',props);
   const EllipsisRef = useRef(null);
   const [Tooltipdisabled, setTooltipDisabled] = useState(true);
 
