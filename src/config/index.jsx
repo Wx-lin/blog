@@ -1,21 +1,7 @@
-/*
- * @Author: 王薪林
- * @Date: 2024-04-12 21:15:08
- * @LastEditTime: 2024-05-27 11:29:30
- * @LastEditors: 王薪林 10655211+wang-xinlinlin@user.noreply.gitee.com
- * @Description:配置文件
- * @FilePath: /blog/src/config/index.jsx
- */
 import CateGoryList from '@/view/Demo/components/CateGoryList.jsx';
 import Tag from '@/view/Demo/components/Tag/index.jsx';
 
-import {
-  AntDesignOutlined,
-  HomeOutlined,
-  Html5Outlined,
-  JavaScriptOutlined,
-  UserOutlined
-} from '@ant-design/icons';
+import { HomeOutlined, Html5Outlined, JavaScriptOutlined, UserOutlined } from '@ant-design/icons';
 import { createContext } from 'react';
 
 export const CurrentContext = createContext(null);
@@ -51,30 +37,18 @@ export const MENUS = [
     icon: <JavaScriptOutlined />,
     path: 'javaScript',
   },
-  // {
-  //   key: 'vue',
-  //   label: 'Vue',
-  //   icon: <XOutlined />,
-  //   path: 'vue',
-  // },
-  // {
-  //   key: 'react',
-  //   label: 'React',
-  //   icon: <SketchOutlined />,
-  //   path: 'react',
-  // },
   {
     key: 'about',
     label: 'About',
     icon: <UserOutlined />,
     path: 'about',
   },
-  {
-    key: 'demo',
-    label: 'AntDemo',
-    icon: <AntDesignOutlined />,
-    path: 'demo',
-  },
+  // {
+  //   key: 'demo',
+  //   label: 'AntDemo',
+  //   icon: <AntDesignOutlined />,
+  //   path: 'demo',
+  // },
 ];
 
 export const DemoTabList = [
