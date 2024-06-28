@@ -14,6 +14,7 @@ import { Button, Layout, Menu, Space, Switch, theme } from 'antd';
 import { find } from 'lodash';
 import React, { Suspense, lazy, useContext, useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import { mockData } from '/mock/data.js';
 
 const { Header, Content, Sider } = Layout;
 const Home = lazy(() => import('@/view/Home.jsx'));
@@ -43,7 +44,8 @@ const App = () => {
 
   const fetchData = async () => {
     const text = await fetchArticle('/store/data.json');
-    const data = JSON.parse(text);
+    // const data = JSON.parse(text);
+    const data = mockData;
     Object.entries(data).forEach(([k, v]) => {
       v.forEach((v2) => (v2.category = k));
     });
@@ -94,7 +96,7 @@ const App = () => {
                 </Space>
               </Space>
             </Button>
-            <SearchModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+            <SearchModal data={List} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
           </div>
         </Space>
         <Space size={10}>

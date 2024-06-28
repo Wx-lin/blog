@@ -1,9 +1,11 @@
 import { SearchOutlined } from '@ant-design/icons';
-import { Input, Modal } from 'antd';
-import { useEffect, useRef } from 'react';
+import { Input, List, Modal, Space, Typography } from 'antd';
+import { useEffect, useRef, useState } from 'react';
 
-const SearchModal = ({ isModalOpen, setIsModalOpen }) => {
+const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
   const inputRef = useRef(null);
+  const [keyWord, setKeyWord] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -18,7 +20,21 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }) => {
     }
   };
 
+  const handleSearchChange = (event) => {
+    const { value } = event.target;
+    const searchData = Object.values(data).flat();
+
+    searchData.forEach((v) => {
+      if (v.name.includes(value)) {
+        setSearchResult([...searchResult, v]);
+      }
+    });
+
+    setKeyWord(value);
+  };
+
   useEffect(() => {
+    console.log('data', data);
     document.addEventListener('keydown', handleKeyDown);
 
     if (isModalOpen) {
@@ -37,9 +53,26 @@ const SearchModal = ({ isModalOpen, setIsModalOpen }) => {
   return (
     <>
       <Modal width={700} closeIcon={false} footer={null} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <div className="h-300px">
-          <Input size="large" placeholder="请输入搜索内容" ref={inputRef} prefix={<SearchOutlined />} />
-        </div>
+        <Space direction="vertical" size={20} className="h-300px w-670px overflow-y-auto">
+          <Input
+            size="large"
+            placeholder="请输入搜索内容"
+            ref={inputRef}
+            value={keyWord}
+            prefix={<SearchOutlined />}
+            onChange={handleSearchChange}
+          />
+          <List
+            header={<div>搜索结果</div>}
+            bordered
+            dataSource={searchResult}
+            renderItem={(item) => (
+              <List.Item>
+                <Typography.Text mark>[{keyWord}]</Typography.Text> {item.name}
+              </List.Item>
+            )}
+          />
+        </Space>
       </Modal>
     </>
   );
