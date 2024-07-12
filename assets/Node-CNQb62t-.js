@@ -1,1 +1,0 @@
-import{ab as o}from"./index-DtCkeJoZ.js";import{i as r}from"./index-BN_laCKA.js";import"./index-C1IiczFa.js";import"./index-BilTIk05.js";function p({data:t}){return o.jsx(r,{List:t})}export{p as default};
