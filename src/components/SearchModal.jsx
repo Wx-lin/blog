@@ -34,7 +34,6 @@ const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
   };
 
   useEffect(() => {
-    console.log('data', data);
     document.addEventListener('keydown', handleKeyDown);
 
     if (isModalOpen) {

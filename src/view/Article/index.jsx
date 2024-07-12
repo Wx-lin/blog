@@ -1,7 +1,7 @@
 import { fetchArticle } from '@/utils/index.jsx';
 import React, { useEffect, useState } from 'react';
 import Markdown from 'react-markdown';
-import { useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { coyWithoutShadows, darcula, vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import remarkGfm from 'remark-gfm';
@@ -14,14 +14,15 @@ const themes = {
 };
 
 export default function index() {
-  const {
-    state: { path },
-  } = useLocation();
+  const [searchParams] = useSearchParams();
 
   const [article, setArticle] = useState(null);
 
   const fetchData = async () => {
-    const data = await fetchArticle(`/article${path}.md`);
+    const category = searchParams.get('category');
+    const name = searchParams.get('name');
+
+    const data = await fetchArticle(`/article/${category}/${name}.md`);
     setArticle(data);
   };
 

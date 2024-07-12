@@ -8,7 +8,6 @@ export default function AnchorNav() {
 
   useEffect(() => {
     setTitles(addAnchor());
-    console.log('titles', titles);
   }, []);
 
   const handleAnchorClick = (e, link) => {

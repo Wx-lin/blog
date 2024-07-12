@@ -6,7 +6,6 @@ import Tree from './Tree';
 
 export default function Tag() {
   useEffect(() => {
-    console.log('useEffect called');
     onGetTreeList();
   }, []);
 

@@ -48,8 +48,10 @@ export default function index({ List }) {
   ];
   const [loading, setLoading] = useState(true);
 
-  const handleLinkToArticle = ({ category, name }) => {
-    navigate('/article', { state: { path: `/${category}/${name}` } });
+  const handleLinkToArticle = (row) => {
+    const { category, name } = row;
+
+    navigate(`/article?category=${category}&name=${name}`);
   };
 
   useEffect(() => {
