@@ -1,10 +1,11 @@
 import Ellipsis from '../components/Ellipsis';
 const getFilePath = (url, params) => {
-  return `http://localhost:8080/${url}/#${params}`;
+  return `http://localhost:8080${url}/#${params}`;
 };
 
 export const fetchArticle = async (url, params = {}) => {
   try {
+    console.log('url',url);
     const res = await fetch(getFilePath(url, params));
     return await res.text();
   } catch (error) {
