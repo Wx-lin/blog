@@ -4,8 +4,18 @@ const DEV = 'http://localhost:8080';
 const PRODUCTION = 'https://raw.githubusercontent.com/Wx-lin/blog-data/master';
 const PATH = import.meta.env.MODE === 'development' ? DEV : PRODUCTION;
 
+// 解析全部数据
+export const decoderArray = (array) => {
+  const decoder = new TextDecoder();
+  const UTF8Array = new Uint8Array(array.join(',').split(','));
+
+  return decoder.decode(UTF8Array);
+};
+
+// 获取接口地址
 const getFilePath = (url, params) => `${PATH}${url}#${params}`;
 
+// 获取数据
 export const fetchArticle = async (url, params = {}) => {
   try {
     const res = await fetch(getFilePath(url, params));

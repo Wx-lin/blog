@@ -1,11 +1,23 @@
+import { decoderArray, fetchArticle } from '@/utils/index.jsx';
 import { SearchOutlined } from '@ant-design/icons';
-import { Input, List, Modal, Space, Typography } from 'antd';
+import { Input, List, Modal, Space, Tag } from 'antd';
 import { useEffect, useRef, useState } from 'react';
 
 const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
   const inputRef = useRef(null);
   const [keyWord, setKeyWord] = useState('');
   const [searchResult, setSearchResult] = useState([]);
+
+  const [allData, setAllData] = useState(null);
+
+  const fetchAllData = async () => {
+    const res = await fetchArticle('/store/all.json');
+    setAllData(res);
+  };
+
+  useEffect(() => {
+    fetchAllData();
+  });
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -22,18 +34,35 @@ const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
 
   const handleSearchChange = (event) => {
     const { value } = event.target;
-    const searchData = Object.values(data).flat();
+    const result = [];
 
-    searchData.forEach((v) => {
-      if (v.name.includes(value)) {
-        setSearchResult([...searchResult, v]);
+    setKeyWord(value);
+
+    if (!value) {
+      setSearchResult([]);
+      return;
+    }
+
+    Object.entries(JSON.parse(allData)).forEach(([k, v]) => {
+      const [category, title] = window.atob(k).split('/');
+      const content = decoderArray(v);
+
+      if ([category, title].includes(value) || content.includes(value)) {
+        result.push({
+          title,
+          category,
+          content,
+        });
       }
     });
 
-    setKeyWord(value);
+    setSearchResult(result);
   };
 
   useEffect(() => {
+    setKeyWord('');
+    setSearchResult([]);
+
     document.addEventListener('keydown', handleKeyDown);
 
     if (isModalOpen) {
@@ -62,12 +91,15 @@ const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
             onChange={handleSearchChange}
           />
           <List
-            header={<div>搜索结果</div>}
+            header="搜索结果"
             bordered
             dataSource={searchResult}
             renderItem={(item) => (
               <List.Item>
-                <Typography.Text mark>[{keyWord}]</Typography.Text> {item.name}
+                <Space align="start" size={20}>
+                  <Tag color="success">{item.title}</Tag>
+                  {item.content}
+                </Space>
               </List.Item>
             )}
           />
