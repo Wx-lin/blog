@@ -1,7 +1,10 @@
 import Ellipsis from '../components/Ellipsis';
-const getFilePath = (url, params) => {
-  return `http://localhost:8080${url}#${params}`;
-};
+
+const DEV = 'http://localhost:8080';
+const PRODUCTION = 'https://raw.githubusercontent.com/Wx-lin/blog-data/master';
+const PATH = import.meta.env.MODE === 'development' ? DEV : PRODUCTION;
+
+const getFilePath = (url, params) => `${PATH}${url}#${params}`;
 
 export const fetchArticle = async (url, params = {}) => {
   try {
