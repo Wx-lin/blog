@@ -1,7 +1,9 @@
 import { decoderArray, fetchArticle } from '@/utils/index.jsx';
 import { SearchOutlined } from '@ant-design/icons';
-import { Input, List, Modal, Space, Tag } from 'antd';
+import { Input, List, Modal, Space, Tag, Typography } from 'antd';
 import { useEffect, useRef, useState } from 'react';
+
+const { Text } = Typography;
 
 const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
   const inputRef = useRef(null);
@@ -47,7 +49,7 @@ const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
       const [category, title] = window.atob(k).split('/');
       const content = decoderArray(v);
 
-      if ([category, title].includes(value) || content.includes(value)) {
+      if (title.includes(value) || content.includes(value)) {
         result.push({
           title,
           category,
@@ -78,6 +80,31 @@ const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
     };
   }, [isModalOpen]);
 
+  const renderItem = (item) => {
+    const parts = item.content.split(new RegExp(`(${keyWord})`, 'gi'));
+
+    return (
+      <List.Item>
+        <Space align="start" size={20}>
+          <Tag color="success">{item.title}</Tag>
+          <Text>
+            {parts.map((part, index) => {
+              if (part === keyWord) {
+                return (
+                  <Text type="danger" strong key={index}>
+                    {part}
+                  </Text>
+                );
+              }
+
+              return part;
+            })}
+          </Text>
+        </Space>
+      </List.Item>
+    );
+  };
+
   return (
     <>
       <Modal width={700} closeIcon={false} footer={null} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
@@ -90,19 +117,7 @@ const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
             prefix={<SearchOutlined />}
             onChange={handleSearchChange}
           />
-          <List
-            header="搜索结果"
-            bordered
-            dataSource={searchResult}
-            renderItem={(item) => (
-              <List.Item>
-                <Space align="start" size={20}>
-                  <Tag color="success">{item.title}</Tag>
-                  {item.content}
-                </Space>
-              </List.Item>
-            )}
-          />
+          <List header="搜索结果" bordered dataSource={searchResult} renderItem={renderItem} />
         </Space>
       </Modal>
     </>
