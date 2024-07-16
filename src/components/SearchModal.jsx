@@ -1,6 +1,6 @@
 import { decoderArray, fetchArticle } from '@/utils/index.jsx';
 import { SearchOutlined } from '@ant-design/icons';
-import { Input, List, Modal, Space, Tag, Typography } from 'antd';
+import { Input, List, Modal, Space, Tag, Typography, AutoComplete } from 'antd';
 import { debounce } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
 
@@ -8,7 +8,6 @@ const { Text } = Typography;
 
 const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
   const inputRef = useRef(null);
-  const [keyWord, setKeyWord] = useState('');
   const [searchResult, setSearchResult] = useState([]);
 
   const [allData, setAllData] = useState(null);
@@ -36,9 +35,7 @@ const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
   };
 
   const searchArticle = (value) => {
-    console.log(11);
-
-    const result = [];
+    let result = [];
 
     Object.entries(JSON.parse(allData)).forEach(([k, v]) => {
       const [category, title] = window.atob(k).split('/');
@@ -49,8 +46,16 @@ const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
           title,
           category,
           content,
+          value,
         });
       }
+    });
+
+    result = result.map((v) => {
+      return {
+        label: renderItem(v),
+        value: v.title,
+      };
     });
 
     setSearchResult(result);
@@ -58,11 +63,8 @@ const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
 
   const debounceSearch = debounce(searchArticle, 500);
 
-  const handleSearchChange = (event) => {
-    const { value } = event.target;
-    setKeyWord(value);
-
-    if (!keyWord) {
+  const handleSearch = (value) => {
+    if (!value) {
       setSearchResult([]);
       return;
     }
@@ -71,7 +73,6 @@ const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
   };
 
   useEffect(() => {
-    setKeyWord('');
     setSearchResult([]);
 
     document.addEventListener('keydown', handleKeyDown);
@@ -90,43 +91,45 @@ const SearchModal = ({ data, isModalOpen, setIsModalOpen }) => {
   }, [isModalOpen]);
 
   const renderItem = (item) => {
-    const parts = item.content.split(new RegExp(`(${keyWord})`, 'gi'));
+    const parts = item.content.split(new RegExp(`(${item.value})`, 'gi'));
 
     return (
-      <List.Item>
-        <Space align="start" size={20}>
-          <Tag color="success">{item.title}</Tag>
-          <Text>
-            {parts.map((part, index) => {
-              if (part === keyWord) {
-                return (
-                  <Text type="danger" strong key={index}>
-                    {part}
-                  </Text>
-                );
-              }
+      <List>
+        <List.Item>
+          <Space align="start" size={20}>
+            <Tag color="success">{item.title}</Tag>
+            <Text>
+              {parts.map((part, index) => {
+                if (part === item.value) {
+                  return (
+                    <Text type="danger" strong key={index}>
+                      {part}
+                    </Text>
+                  );
+                }
 
-              return part;
-            })}
-          </Text>
-        </Space>
-      </List.Item>
+                return part;
+              })}
+            </Text>
+          </Space>
+        </List.Item>
+      </List>
     );
   };
 
   return (
     <>
       <Modal width={700} closeIcon={false} footer={null} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <Space direction="vertical" size={20} className="h-500px w-670px overflow-y-auto">
-          <Input
-            size="large"
-            placeholder="请输入搜索内容"
+        <Space direction="vertical" size={20} >
+          <AutoComplete
+            style={{
+              width: 670,
+            }}
             ref={inputRef}
-            value={keyWord}
-            prefix={<SearchOutlined />}
-            onChange={handleSearchChange}
-          />
-          <List header="搜索结果" bordered dataSource={searchResult} renderItem={renderItem} />
+            options={searchResult}
+            onSearch={handleSearch}>
+            <Input size="large" placeholder="请输入搜索内容" />
+          </AutoComplete>
         </Space>
       </Modal>
     </>
